@@ -22,7 +22,7 @@ module.exports = {
       return res.status(401).json({
         status: false,
         error: {
-          message: 'Invalid auth mechanism.'
+          message: 'MIssing auth information'
         }
       });
     }

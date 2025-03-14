@@ -38,9 +38,11 @@ const BookModel = {
 
 module.exports = {
   createBook: async (book) => {    
+    //Initialise mongodb collection
     const db = getDB();
     const booksCollection = db.collection("books");
     try {
+      //call collection with payload
       const result = await booksCollection.insertOne(book);
       return { message: "Book entry created", book: result }
     }
@@ -50,11 +52,14 @@ module.exports = {
   },
 
   findBook: (id) => {    
+    //Initialise mongodb collection
     const db = getDB();
     const booksCollection = db.collection("books");
     try {
+      //create object id query
       var ObjectId = require('mongodb').ObjectId; 
       var o_id = new ObjectId(id)
+      //call collection with query
       const result = booksCollection.find({_id:o_id});
       return { message: "Book retrieved", book: result.toArray() }
     }
@@ -64,12 +69,15 @@ module.exports = {
   },
 
   updateBook: async (id, updatedValue) => {    
+    //Initialise mongodb collection
     const db = getDB();
     const booksCollection = db.collection("books");
     try {
+      //create object id query
       var ObjectId = require('mongodb').ObjectId; 
       var o_id = new ObjectId(id)
 
+      //call collection with query and payload
       const result = await booksCollection.replaceOne(
         {_id:o_id},
         updatedValue 
@@ -82,9 +90,11 @@ module.exports = {
   },
 
   getAllBooks: async (user) => {    
+    //Initialise mongodb collection
     const db = getDB();
     const booksCollection = db.collection("books");
     try {
+      //call collection with query
       const result = await booksCollection.find({userID:user}).toArray();
       return { message: "Retrieved all books", books: result }
     } catch (err) {
@@ -93,11 +103,14 @@ module.exports = {
   },
 
   deleteBook: async (id) => {    
+    //Initialise mongodb collection
     const db = getDB();
     const booksCollection = db.collection("books");
     try {
+      //create object id query
       var ObjectId = require('mongodb').ObjectId; 
       var o_id = new ObjectId(id)
+      //call collection with query
       const result = await booksCollection.deleteOne({_id:o_id});
       return { message: "Book deleted", book: result }
     } catch (err) {

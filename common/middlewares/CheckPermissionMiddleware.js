@@ -8,8 +8,8 @@ module.exports = {
       } = req;
 
       UserModel.findUserById(userId).then((user) => {
-        // IF user does not exist in our database, means something is fishy
-        // THEN we will return forbidden error and ask user to login again
+        // If user does not exist in our database, means something is fishy
+        // Then we will return forbidden error and ask user to login again
         if (!user) {
           return res.status(403).json({
             status: false,
@@ -19,12 +19,11 @@ module.exports = {
 
         const userRole = user[0].role;
 
-        // IF user does not possess the required role
-        // THEN return forbidden error
+        // Check user has correct role
         if (userRole !== role) {
           return res.status(403).json({
             status: false,
-            error: `You need to be a ${role} to access this endpoint.`,
+            error: `You do not have ${role} access to this function`,
           });
         }
 

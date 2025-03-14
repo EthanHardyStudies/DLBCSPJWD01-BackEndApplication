@@ -70,8 +70,8 @@ module.exports = {
 
     UserModel.findUser({ username: username })
       .then((user) => {
-        // IF user is not found with the given username
-        // THEN Return user not found error
+        // If user is not found
+        // Then Return user not found error
         if (!user) {
           return res.status(400).json({
             status: false,
@@ -83,8 +83,8 @@ module.exports = {
 
         const encryptedPassword = encryptPassword(password);
 
-        // IF Provided password does not match with the one stored in the DB
-        // THEN Return password mismatch error
+        // If Provided password does not match with the one stored in the DB
+        // Then Return password mismatch error
         if (user[0].password !== encryptedPassword) {
           return res.status(400).json({
             status: false,

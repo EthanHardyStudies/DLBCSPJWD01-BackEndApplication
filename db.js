@@ -12,6 +12,7 @@ const connectDB = async () => {
     try {
       const client = new MongoClient(mongoURI);
   
+      //connect to mongodb instance
       await client.connect();
       db = client.db(); // Auto-selects database from URI
       console.log("MongoDB Connected...");
@@ -21,6 +22,7 @@ const connectDB = async () => {
     }
   };
 
+  //returns db connection to controller for use.
 const getDB = () => {
   if (!db) {
     throw new Error("Database not initialized. Call connectDB first.");

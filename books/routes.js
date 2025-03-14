@@ -24,7 +24,7 @@ router.post(
   "/addBook",
   [
     isAuthenticatedMiddleware.check,
-    CheckPermissionMiddleware.has(roles.ADMIN),
+    CheckPermissionMiddleware.has(roles.USER),
     SchemaValidationMiddleware.verify(createBookPayload),
   ],
   BookController.createBook
@@ -34,7 +34,7 @@ router.patch(
   "/updateBook",
   [
     isAuthenticatedMiddleware.check,
-    CheckPermissionMiddleware.has(roles.ADMIN),
+    CheckPermissionMiddleware.has(roles.USER),
     SchemaValidationMiddleware.verify(updateBookPayload),
   ],
   BookController.updateBook
@@ -42,7 +42,7 @@ router.patch(
 
 router.delete(
   "/removeBook",
-  [isAuthenticatedMiddleware.check, CheckPermissionMiddleware.has(roles.ADMIN)],
+  [isAuthenticatedMiddleware.check, CheckPermissionMiddleware.has(roles.USER)],
   BookController.deleteBook
 );
 

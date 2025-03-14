@@ -22,6 +22,7 @@ const BookRoutes = require("./books/routes");
 // Connect to MongoDB
 connectDB();
 
+//method to check if API is running
 app.get('/status', (request, response) => {
     const status = {
         "Status": "Running"

@@ -32,9 +32,11 @@ const UserModel = {
 
 module.exports = {
   createUser: async (user, res) => {
+    //Initialise mongodb collection
     const db = getDB();
     const usersCollection = db.collection("users");
     try{
+      //call collection with payload
       const result = await usersCollection.insertOne(user);
       return { message: "User created successfully", userId: result.insertedId };
     }
@@ -44,10 +46,11 @@ module.exports = {
   },
 
   findUser: async (query) => {
+    //Initialise mongodb collection
     const db = getDB();
     const usersCollection = db.collection("users");
     try {
-      console.log("Query:", query); // ✅ Should log an object
+      //call collection with query
       const result = usersCollection.find(query);
       return result.toArray();
     }
@@ -57,13 +60,16 @@ module.exports = {
   },
 
   findUserById: async (query) => {
+    //Initialise mongodb collection
     const db = getDB();
     const usersCollection = db.collection("users");
     try {
+      //create object id query
       var ObjectId = require('mongodb').ObjectId; 
       var id = query;  
       var o_id = new ObjectId(id);
 
+      //call collection with query
       const result = usersCollection.find({_id:o_id});
       return result.toArray();
     }
@@ -73,11 +79,14 @@ module.exports = {
   },
 
   updateUser: async (query, updatedValue) => {
+    //Initialise mongodb collection
     const db = getDB();
     const usersCollection = db.collection("users");
     try {
+      //create object id query
       var ObjectId = require('mongodb').ObjectId; 
       var o_id = new ObjectId(query)
+      //call collection with payload and query
       const result = await usersCollection.updateOne(
         { _id:o_id },
         {
@@ -98,9 +107,11 @@ module.exports = {
   },
 
   deleteUser: async (query) => {
+    //Initialise mongodb collection
     const db = getDB();
     const usersCollection = db.collection("users");
     try {
+      //call collection with query
       const result = await usersCollection.deleteOne({ query });
       return { message: 'User deleted', result };
     } catch (err) {

@@ -2,7 +2,9 @@ const UserModel = require("./../../common/models/User");
 
 module.exports = {
   getUser: (req, res) => {
+    //add query
     const userId = req.params.id;
+    //call model processs method
     UserModel.findUser({ id: userId })
     .then((user) => {
       return res.status(200).json({
@@ -34,8 +36,10 @@ module.exports = {
 
     UserModel.updateUser(userId, payload)
       .then(() => {
+        //create object id query
         var ObjectId = require('mongodb').ObjectId; 
         var o_id = new ObjectId(userId)
+        //call model processs method
         return UserModel.findUser({_id:o_id});
       })
       .then((user) => {
@@ -53,7 +57,9 @@ module.exports = {
   },
 
   deleteUser: async (req, res) => {
+    //parse query info from payload
     const userId = req.params.id;
+    //call model processs method
     UserModel.deleteUser({ id: userId })
     .then((numberOfEntriesDeleted) => {
       return res.status(200).json({

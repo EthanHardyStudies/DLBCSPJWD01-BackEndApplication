@@ -21,6 +21,7 @@ module.exports = {
       const validate = ajv.compile(schema);
       const isValid = validate(body);
 
+      //If valid, continue with process
       if (isValid) {
         return next();
       }

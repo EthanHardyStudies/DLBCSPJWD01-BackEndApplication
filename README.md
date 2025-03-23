@@ -13,6 +13,17 @@ Installation is done using the npm install command:
 npm install express
 ```
 
+## Dependencies
+
+Install dependencies using the npm install command
+
+```bash
+npm install ajv@8.17.1
+npm install mongodb@6.11.0
+npm install jsonwebtoken@9.0.2
+npm install cors@2.8.5
+```
+
 ## Development server
 
 To start a local development server, run:
